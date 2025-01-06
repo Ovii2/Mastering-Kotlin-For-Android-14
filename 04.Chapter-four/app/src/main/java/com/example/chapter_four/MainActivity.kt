@@ -66,7 +66,11 @@ fun MyApp(modifier: Modifier = Modifier) {
         containerColor = Color.White,
         contentColor = Color.Black,
         content = { paddingValues ->
-            Text(text = "Test", modifier = Modifier.padding(paddingValues))
+            Text(
+                text = "Test", modifier = Modifier
+                    .padding(paddingValues)
+                    .clickable(onClick = {}, onClickLabel = "Click me")
+            )
         }
     )
 
