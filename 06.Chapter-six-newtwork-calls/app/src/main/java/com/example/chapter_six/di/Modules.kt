@@ -33,7 +33,6 @@ val appModules = module {
 
     single { Dispatchers.IO }
 
-
     single {
         Retrofit.Builder().addConverterFactory(Json.asConverterFactory(contentType = "application/json".toMediaType()))
             .baseUrl(baseUrl).build()

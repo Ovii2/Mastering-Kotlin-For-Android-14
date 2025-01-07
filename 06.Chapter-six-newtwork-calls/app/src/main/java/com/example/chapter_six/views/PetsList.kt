@@ -33,12 +33,21 @@ fun PetsList(modifier: Modifier) {
     val petsUIState by petsViewModel.petsUIState.collectAsStateWithLifecycle()
 
     Column(
-        modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.Center,
+        modifier = Modifier.padding(top = 16.dp, end = 16.dp, bottom = 50.dp, start = 16.dp), verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(Modifier.height(100.dp))
-        AnimatedVisibility(visible = petsUIState.isLoading) {
-            CircularProgressIndicator()
+        AnimatedVisibility(
+            visible = petsUIState.isLoading
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp), horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                CircularProgressIndicator()
+                Text("Loading...")
+            }
         }
         AnimatedVisibility(visible = petsUIState.pets.isNotEmpty()) {
             LazyColumn {
@@ -56,18 +65,11 @@ fun PetsList(modifier: Modifier) {
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun PetListItem(cat: Cat) {
-    ElevatedCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(6.dp)
+    ElevatedCard(modifier = Modifier.fillMaxWidth().padding(6.dp)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 10.dp)
+        Column(modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp)
         ) {
-            AsyncImage(
-                model = "https://cataas.com/cat/${cat.id}", contentDescription = "Cute cat", modifier = Modifier
+            AsyncImage(model = "https://cataas.com/cat/${cat.id}", contentDescription = "Cute cat", modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp),
                 contentScale = ContentScale.FillWidth
@@ -83,7 +85,6 @@ fun PetListItem(cat: Cat) {
             }
         }
     }
-
 }
 
 
