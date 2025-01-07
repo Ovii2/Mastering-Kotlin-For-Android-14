@@ -38,6 +38,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     // Koin DI
     implementation(libs.koin.core)
     implementation(libs.koin.android)

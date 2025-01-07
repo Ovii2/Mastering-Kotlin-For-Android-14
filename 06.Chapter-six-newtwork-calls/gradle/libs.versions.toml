@@ -1,6 +1,6 @@
 [versions]
 agp = "8.7.3"
-koinCore = "3.4.2"
+koinCore = "3.5.0"
 kotlin = "2.0.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -16,8 +16,10 @@ coroutines = "1.7.3"
 okhttp3 = "4.11.0"
 koin = "3.5.0"
 
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -42,6 +44,7 @@ koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
 insert-koin-koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCore" }
+coil-compose = "io.coil-kt:coil-compose:2.4.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -49,6 +52,6 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 [bundles]
-compose = ["androidx-ui", "androidx-ui-graphics", "androidx-ui-tooling", "androidx-material3", "androidx-lifecycle-runtime-ktx"]
-koin = ["koin-core", "koin-android", "koin-androidx-compose"]  # Use the correct library name
+compose = ["androidx-ui", "androidx-ui-graphics", "androidx-ui-tooling", "androidx-material3", "androidx-lifecycle-runtime-ktx", "coil-compose"]
+koin = ["koin-core", "koin-android", "koin-androidx-compose"]
 networking = ["retrofit", "retrofit-serialization", "serialization-json", "coroutines", "coroutines-android", "okhttp3"]
