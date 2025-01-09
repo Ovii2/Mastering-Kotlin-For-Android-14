@@ -38,6 +38,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.compose.window.size)
+    implementation(libs.androidx.window)
+
     implementation(libs.coil.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     // Koin DI

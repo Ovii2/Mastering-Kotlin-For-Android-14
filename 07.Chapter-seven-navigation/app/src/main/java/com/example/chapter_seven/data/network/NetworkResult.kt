@@ -1,4 +1,4 @@
-package com.example.chapter_seven.data
+package com.example.chapter_seven.data.network
 
 sealed class NetworkResult<out T> {
     data class Success<out T>(val data: T) : NetworkResult<T>()

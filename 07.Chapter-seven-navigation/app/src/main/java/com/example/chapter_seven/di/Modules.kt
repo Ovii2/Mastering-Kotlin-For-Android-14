@@ -1,8 +1,8 @@
 package com.example.chapter_seven.di
 
-import com.example.chapter_seven.data.CatsAPI
-import com.example.chapter_seven.data.PetsRepository
-import com.example.chapter_seven.data.PetsRepositoryImpl
+import com.example.chapter_seven.data.repository.CatsAPI
+import com.example.chapter_seven.data.repository.PetsRepository
+import com.example.chapter_seven.data.repository.PetsRepositoryImpl
 import com.example.chapter_seven.viewModel.PetsViewModel
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.coroutines.Dispatchers

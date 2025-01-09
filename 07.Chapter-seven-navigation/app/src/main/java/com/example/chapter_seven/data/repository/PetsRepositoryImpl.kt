@@ -1,5 +1,7 @@
-package com.example.chapter_seven.data
+package com.example.chapter_seven.data.repository
 
+import com.example.chapter_seven.data.model.Cat
+import com.example.chapter_seven.data.network.NetworkResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 

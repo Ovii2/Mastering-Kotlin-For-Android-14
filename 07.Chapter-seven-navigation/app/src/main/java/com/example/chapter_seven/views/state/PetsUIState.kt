@@ -1,6 +1,6 @@
-package com.example.chapter_seven.views
+package com.example.chapter_seven.views.state
 
-import com.example.chapter_seven.data.Cat
+import com.example.chapter_seven.data.model.Cat
 
 data class PetsUIState(
     val isLoading: Boolean = false,

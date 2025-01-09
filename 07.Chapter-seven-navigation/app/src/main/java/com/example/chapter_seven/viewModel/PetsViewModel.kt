@@ -2,9 +2,9 @@ package com.example.chapter_seven.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.chapter_seven.data.NetworkResult
-import com.example.chapter_seven.data.PetsRepository
-import com.example.chapter_seven.views.PetsUIState
+import com.example.chapter_seven.data.network.NetworkResult
+import com.example.chapter_seven.data.repository.PetsRepository
+import com.example.chapter_seven.views.state.PetsUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch

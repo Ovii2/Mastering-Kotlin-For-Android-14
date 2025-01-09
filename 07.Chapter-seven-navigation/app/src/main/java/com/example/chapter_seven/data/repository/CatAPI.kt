@@ -1,5 +1,6 @@
-package com.example.chapter_seven.data
+package com.example.chapter_seven.data.repository
 
+import com.example.chapter_seven.data.model.Cat
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
