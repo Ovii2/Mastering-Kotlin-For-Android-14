@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlinx-serialization")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -35,15 +36,30 @@ android {
     buildFeatures {
         compose = true
     }
+    ksp {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
 }
 
 dependencies {
+    // Room Database
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
+    // Window Handling
     implementation(libs.compose.window.size)
     implementation(libs.androidx.window)
 
+    // Image Loading
     implementation(libs.coil.compose)
+
+    // Lifecycle
     implementation(libs.androidx.lifecycle.runtime.compose)
-    // Koin DI
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // Dependency Injection - Koin
     implementation(libs.koin.core)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
@@ -52,9 +68,7 @@ dependencies {
     // Navigation
     implementation(libs.compose.navigation)
 
-    // Lifecycle and Compose
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    // Compose UI
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -65,8 +79,10 @@ dependencies {
     // Networking
     implementation(libs.bundles.networking)
 
-    // Core and Test
+    // Android Core
     implementation(libs.androidx.core.ktx)
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

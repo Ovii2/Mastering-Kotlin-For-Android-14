@@ -1,9 +1,10 @@
 package com.example.chapter_eight.data.repository
 
 import com.example.chapter_eight.data.model.Cat
-import com.example.chapter_eight.data.network.NetworkResult
+import kotlinx.coroutines.flow.Flow
 
 interface PetsRepository {
 
-    suspend fun getPets(): NetworkResult<List<Cat>>
+    suspend fun getPets(): Flow<List<Cat>>
+    suspend fun fetchRemotePets()
 }
