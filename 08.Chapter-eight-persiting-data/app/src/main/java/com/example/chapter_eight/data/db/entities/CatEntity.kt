@@ -1,5 +1,6 @@
 package com.example.chapter_eight.data.db.entities
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -9,5 +10,7 @@ data class CatEntity(
     val id: String,
     val mimetype: String,
     val size: Int,
-    val tags: List<String>
+    val tags: List<String>,
+    @ColumnInfo(defaultValue = "0")
+    val isFavorite: Boolean = false
 )

@@ -14,4 +14,5 @@ data class Cat(
     val size: Int,
     @SerialName("tags")
     val tags: List<String>,
+    val isFavorite: Boolean = false
 )

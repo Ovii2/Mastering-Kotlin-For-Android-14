@@ -52,4 +52,35 @@ class PetsRepositoryImpl(
             }
         }
     }
+
+    override suspend fun updatePets(cat: Cat) {
+        withContext(dispatcher) {
+            catDAO.update(
+                CatEntity(
+                    id = cat.id,
+                    mimetype = cat.mimetype,
+                    size = cat.size,
+                    tags = cat.tags,
+                    isFavorite = cat.isFavorite
+                )
+            )
+        }
+    }
+
+    override suspend fun getFavoritePets(): Flow<List<Cat>> {
+        return withContext(dispatcher) {
+            catDAO.getFavoriteCats()
+                .map { petsCached ->
+                    petsCached.map { catEntity ->
+                        Cat(
+                            id = catEntity.id,
+                            mimetype = catEntity.mimetype,
+                            size = catEntity.size,
+                            tags = catEntity.tags,
+                            isFavorite = catEntity.isFavorite
+                        )
+                    }
+                }
+        }
+    }
 }

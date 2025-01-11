@@ -7,4 +7,6 @@ interface PetsRepository {
 
     suspend fun getPets(): Flow<List<Cat>>
     suspend fun fetchRemotePets()
+    suspend fun updatePets(cat: Cat)
+    suspend fun getFavoritePets(): Flow<List<Cat>>
 }
