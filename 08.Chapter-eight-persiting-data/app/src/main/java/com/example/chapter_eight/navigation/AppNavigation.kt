@@ -68,7 +68,13 @@ fun AppNavigation(
             )
         }
         composable(Screens.FavoritePetsScreen.route) {
-            FavoritePetsScreen()
+            FavoritePetsScreen(
+                onPetClicked = { cat ->
+                    navHostController.navigate(
+                        "${Screens.PetDetailScreen.route}/${Json.encodeToString(cat)}}"
+                    )
+                }
+            )
         }
     }
 }
