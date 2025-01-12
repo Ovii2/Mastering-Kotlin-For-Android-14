@@ -15,7 +15,7 @@ import com.example.chapter_eight.data.model.Cat
 import com.example.chapter_eight.views.screens.PetDetailsScreenContent
 
 @Composable
-fun PetListAndDetails(pets: List<Cat>) {
+fun PetListAndDetails(pets: List<Cat>, onFavoriteClicked: (Cat) -> Unit) {
     var currentPet by remember {
         mutableStateOf(pets.first())
     }
@@ -29,7 +29,8 @@ fun PetListAndDetails(pets: List<Cat>) {
             pets = pets,
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f)
+                .weight(1f),
+            onFavoriteClicked = onFavoriteClicked
         )
         PetDetailsScreenContent(
             modifier = Modifier

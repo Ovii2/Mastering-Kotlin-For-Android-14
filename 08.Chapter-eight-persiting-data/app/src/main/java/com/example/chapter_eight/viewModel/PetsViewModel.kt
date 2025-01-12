@@ -42,4 +42,18 @@ class PetsViewModel(private val petsRepository: PetsRepository) : ViewModel() {
             }
         }
     }
+
+    fun updatePet(cat: Cat) {
+        viewModelScope.launch {
+            petsRepository.updatePets(cat)
+        }
+    }
+
+    fun getFavoritePets() {
+        viewModelScope.launch {
+            petsRepository.getFavoritePets().collect {
+                _favoritePets.value = it
+            }
+        }
+    }
 }

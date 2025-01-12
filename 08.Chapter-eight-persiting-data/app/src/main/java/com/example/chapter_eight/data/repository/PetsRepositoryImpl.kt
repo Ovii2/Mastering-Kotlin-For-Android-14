@@ -23,7 +23,8 @@ class PetsRepositoryImpl(
                             id = catEntity.id,
                             mimetype = catEntity.mimetype,
                             size = catEntity.size,
-                            tags = catEntity.tags
+                            tags = catEntity.tags,
+                            isFavorite = catEntity.isFavorite
                         )
                     }
                 }
@@ -45,7 +46,8 @@ class PetsRepositoryImpl(
                             id = it.id,
                             mimetype = it.mimetype,
                             size = it.size,
-                            tags = it.tags
+                            tags = it.tags,
+                            isFavorite = it.isFavorite
                         )
                     )
                 }

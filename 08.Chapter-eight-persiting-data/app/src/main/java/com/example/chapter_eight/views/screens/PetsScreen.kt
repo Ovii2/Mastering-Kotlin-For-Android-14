@@ -27,11 +27,22 @@ fun PetsScreen(onPetClicked: (Cat) -> Unit, contentType: ContentType) {
     val petsViewModel: PetsViewModel = koinViewModel()
     val petsUIState by petsViewModel.petsUIState.collectAsStateWithLifecycle()
 
-    PetsScreenContent(modifier = Modifier.fillMaxSize(), onPetClicked = onPetClicked, contentType = contentType, petsUIState = petsUIState)
+    PetsScreenContent(
+        modifier = Modifier.fillMaxSize(), onPetClicked = onPetClicked, contentType = contentType, petsUIState = petsUIState,
+        onFavoriteClicked = {
+            petsViewModel.updatePet(it)
+        }
+    )
 }
 
 @Composable
-fun PetsScreenContent(modifier: Modifier, onPetClicked: (Cat) -> Unit, contentType: ContentType, petsUIState: PetsUIState) {
+fun PetsScreenContent(
+    modifier: Modifier,
+    onPetClicked: (Cat) -> Unit,
+    contentType: ContentType,
+    petsUIState: PetsUIState,
+    onFavoriteClicked: (Cat) -> Unit
+) {
     Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
         AnimatedVisibility(
             visible = petsUIState.isLoading
@@ -45,11 +56,13 @@ fun PetsScreenContent(modifier: Modifier, onPetClicked: (Cat) -> Unit, contentTy
                 PetsList(
                     onPetClicked = onPetClicked,
                     pets = petsUIState.pets,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    onFavoriteClicked = onFavoriteClicked
                 )
             } else {
                 PetListAndDetails(
-                    pets = petsUIState.pets
+                    pets = petsUIState.pets,
+                    onFavoriteClicked = onFavoriteClicked
                 )
             }
         }
