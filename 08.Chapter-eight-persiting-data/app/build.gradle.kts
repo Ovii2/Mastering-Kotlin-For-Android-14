@@ -42,6 +42,10 @@ android {
 }
 
 dependencies {
+    //    Work Manager
+    implementation(libs.work.runtime)
+    implementation(libs.workmanager.koin)
+
     // Room Database
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
@@ -83,6 +87,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
 
     // Testing
+    androidTestImplementation(libs.work.testing)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

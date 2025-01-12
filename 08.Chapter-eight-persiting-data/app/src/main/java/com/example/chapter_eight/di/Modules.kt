@@ -5,12 +5,14 @@ import com.example.chapter_eight.data.db.CatDatabase
 import com.example.chapter_eight.data.repository.CatsAPI
 import com.example.chapter_eight.data.repository.PetsRepository
 import com.example.chapter_eight.data.repository.PetsRepositoryImpl
+import com.example.chapter_eight.data.workers.PetsSyncWorkers
 import com.example.chapter_eight.viewModel.PetsViewModel
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.workmanager.dsl.worker
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
@@ -57,5 +59,8 @@ val appModules = module {
         ).build()
     }
     single { get<CatDatabase>().catDao() }
+
+    // Work Manager
+    worker { PetsSyncWorkers(get(), get(), get()) }
 
 }
