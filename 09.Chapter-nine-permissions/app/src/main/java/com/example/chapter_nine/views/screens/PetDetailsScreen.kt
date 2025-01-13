@@ -63,6 +63,7 @@ fun PetDetailsScreen(onBackPressed: () -> Unit, cat: Cat) {
     )
 }
 
+
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun PetDetailsScreenContent(modifier: Modifier, cat: Cat) {
