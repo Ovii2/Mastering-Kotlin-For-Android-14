@@ -1,6 +1,7 @@
 package com.example.chapter_ten
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.DrawerValue
@@ -42,6 +43,11 @@ import kotlinx.coroutines.launch
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
+//        AppWatcher.objectWatcher.expectWeaklyReachable(
+//            LeakTestUtils.leakCanaryTest,
+//            "Static reference to LeakCanaryTest"
+//        )
+        Log.v("First Log", "Opa")
         super.onCreate(savedInstanceState)
         startPetsSync()
         val deviceFoldingPostureFlow = WindowInfoTracker.getOrCreate(this).windowLayoutInfo(this)

@@ -69,6 +69,7 @@ window = { module = "androidx.window:window" }
 work-runtime = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
 workmanager-koin = { module = "io.insert-koin:koin-androidx-workmanager", version.ref = "koin" }
 work-testing = { module = "androidx.work:work-testing", version.ref = "work" }
+leakcanary-android = "com.squareup.leakcanary:leakcanary-android:2.14"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
