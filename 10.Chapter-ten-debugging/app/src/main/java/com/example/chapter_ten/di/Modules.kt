@@ -1,6 +1,9 @@
 package com.example.chapter_ten.di
 
 import androidx.room.Room.databaseBuilder
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.chuckerteam.chucker.api.RetentionManager
 import com.example.chapter_ten.data.db.CatDatabase
 import com.example.chapter_ten.data.repository.CatsAPI
 import com.example.chapter_ten.data.repository.PetsRepository
@@ -11,6 +14,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.workmanager.dsl.worker
 import org.koin.core.module.dsl.bind
@@ -40,8 +44,15 @@ val appModules = module {
     single { Dispatchers.IO }
 
     // Retrofit Setup
+//    single {
+//        Retrofit.Builder().addConverterFactory(Json.asConverterFactory(contentType = "application/json".toMediaType()))
+//            .baseUrl(baseUrl).build()
+//
+//    }
+    // Retrofit Updated Setup
     single {
         Retrofit.Builder().addConverterFactory(Json.asConverterFactory(contentType = "application/json".toMediaType()))
+            .client(get())
             .baseUrl(baseUrl).build()
     }
 
@@ -62,5 +73,23 @@ val appModules = module {
 
     // Work Manager
     worker { PetsSyncWorkers(get(), get(), get()) }
+
+    // Chucker debug
+    single {
+        val chuckerCollector = ChuckerCollector(
+            context = androidContext(),
+            showNotification = true,
+            retentionPeriod = RetentionManager.Period.ONE_HOUR
+        )
+        val chuckerInterceptor = ChuckerInterceptor.Builder(androidContext())
+            .collector(chuckerCollector)
+            .maxContentLength(250_000L)
+            .redactHeaders(emptySet())
+            .alwaysReadResponseBody(false)
+            .build()
+        OkHttpClient.Builder()
+            .addInterceptor(chuckerInterceptor)
+            .build()
+    }
 
 }

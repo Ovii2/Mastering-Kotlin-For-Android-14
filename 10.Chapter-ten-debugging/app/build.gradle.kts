@@ -98,4 +98,8 @@ dependencies {
 
     // Debug
     debugImplementation(libs.leakcanary.android)
+    debugImplementation(libs.chucker)
+
+    // Chucker
+    releaseImplementation(libs.chucker.no.op)
 }
