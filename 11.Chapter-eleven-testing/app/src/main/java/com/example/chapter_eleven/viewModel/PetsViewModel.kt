@@ -22,7 +22,7 @@ class PetsViewModel(private val petsRepository: PetsRepository) : ViewModel() {
         getPets()
     }
 
-    private fun getPets() {
+    fun getPets() {
         petsUIState.value = PetsUIState(isLoading = true)
         viewModelScope.launch {
             petsRepository.getPets().asResult().collect { result ->

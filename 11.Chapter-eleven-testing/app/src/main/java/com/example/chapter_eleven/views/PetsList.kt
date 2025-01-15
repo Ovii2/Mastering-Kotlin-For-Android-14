@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.chapter_eleven.data.model.Cat
@@ -58,11 +59,13 @@ fun PetListItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(6.dp)
+            .testTag("PetListItemCard")
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 10.dp)
+                .testTag("PetListItemColumn")
                 .clickable {
                     onPetClicked(cat)
                 }
@@ -97,9 +100,11 @@ fun PetListItem(
                     }
                 }
                 Icon(
-                    modifier = Modifier.clickable {
-                        onFavoriteClicked(cat.copy(isFavorite = !cat.isFavorite))
-                    }, imageVector = if (cat.isFavorite) {
+                    modifier = Modifier
+                        .testTag("PetListItemFavoriteIcon")
+                        .clickable {
+                            onFavoriteClicked(cat.copy(isFavorite = !cat.isFavorite))
+                        }, imageVector = if (cat.isFavorite) {
                         Icons.Default.Favorite
                     } else {
                         Icons.Default.FavoriteBorder
